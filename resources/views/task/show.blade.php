@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+</head>
+
+<body>
+    <h1>論文詳細</h1>
+
+    【タイトル】<br>
+    {{ $tasks->title }} <br>
+    【内容】<br>
+    {{ $tasks->body }}
+
+    <div class="button-group">
+        <button onclick="location.href='/tasks'">一覧へ戻る</button>
+        <button onclick="location.href='/tasks/{{ $tasks->id }}/edit'">編集する</button>
+        <form action="/tasks/{{ $tasks->id }}" method="post">
+            @csrf
+            @method('DELETE')
+            <input type="submit" value="削除する" onclick="if(!confirm('削除しますか？')){return false};">
+        </form>
+    </div>
+</body>
+
+</html>
